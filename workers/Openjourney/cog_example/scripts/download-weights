@@ -4,7 +4,7 @@ import os
 import shutil
 from diffusers import StableDiffusionPipeline
 
-MODEL_ID = "prompthero/openjourney"
+MODEL_ID = "XpucT/Deliberate"
 MODEL_CACHE = "diffusers-cache"
 
 
