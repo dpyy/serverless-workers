@@ -51,7 +51,7 @@ class Predictor(BasePredictor):
         print("Loading pipeline...")
 
         self.txt2img_pipe = StableDiffusionPipeline.from_pretrained(
-            "prompthero/openjourney",
+            "XpucT/Deliberate",
             safety_checker=None,
             cache_dir=MODEL_CACHE,
             local_files_only=True,
@@ -80,6 +80,9 @@ class Predictor(BasePredictor):
         self.txt2img_pipe.enable_xformers_memory_efficient_attention()
         self.img2img_pipe.enable_xformers_memory_efficient_attention()
         self.inpaint_pipe.enable_xformers_memory_efficient_attention()
+        self.txt2img_pipe.safety_checker = lambda images, clip_input: (images, False)
+        self.img2img_pipe.safety_checker = lambda images, clip_input: (images, False)
+        self.inpaint_pipe.safety_checker = lambda images, clip_input: (images, False)
 
     @torch.inference_mode()
     @torch.cuda.amp.autocast()
